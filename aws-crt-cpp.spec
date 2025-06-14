@@ -116,7 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libaws-crt-cpp.so
 %{_includedir}/aws/crt
 %{_includedir}/aws/iot
 %{_libdir}/cmake/aws-crt-cpp
