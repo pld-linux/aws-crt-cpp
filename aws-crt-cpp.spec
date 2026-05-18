@@ -6,13 +6,13 @@
 Summary:	AWS Crt Cpp library
 Summary(pl.UTF-8):	Biblioteka AWS Crt Cpp
 Name:		aws-crt-cpp
-Version:	0.32.8
+Version:	0.38.7
 Release:	1
 License:	Apache v2.0
 Group:		Libraries
 #Source0Download: https://github.com/awslabs/aws-crt-cpp/releases
 Source0:	https://github.com/awslabs/aws-crt-cpp/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	f191f7e574c8e364a54c733473010e29
+# Source0-md5:	199908c51a79e9840b4cd829e6d80bf1
 URL:		https://github.com/awslabs/aws-crt-cpp
 BuildRequires:	aws-c-auth-devel
 BuildRequires:	aws-c-cal-devel
@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc NOTICE README.md
-%attr(755,root,root) %{_libdir}/libaws-crt-cpp.so
+%{_libdir}/libaws-crt-cpp.so
 
 %files devel
 %defattr(644,root,root,755)
