@@ -1,34 +1,58 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# unit tests (require network)
+%bcond_without	apidocs		# API documentation
 %bcond_with	tests		# unit tests (require network)
 #
+# from submodules in https://github.com/awslabs/aws-crt-cpp/crt
+%define	aws_c_auth_ver		0.10.4
+%define	aws_c_cal_ver		0.9.15
+%define	aws_c_common_ver	0.14.4
+%define	aws_c_compression_ver	0.3.2
+%define	aws_c_event_stream_ver	0.7.1
+%define	aws_c_http_ver		0.11.0
+%define	aws_c_io_ver		0.27.6
+%define	aws_c_mqtt_ver		0.16.1
+%define	aws_c_s3_ver		0.13.5
+%define	aws_c_sdkutila_ver	0.2.9
+%define	aws_checksums_ver	0.2.10
+%define	aws_lc_ver		5.5.0
+%define	s2n_ver			1.7.7
+
 Summary:	AWS Crt Cpp library
 Summary(pl.UTF-8):	Biblioteka AWS Crt Cpp
 Name:		aws-crt-cpp
-Version:	0.38.7
+Version:	0.43.8
 Release:	1
 License:	Apache v2.0
 Group:		Libraries
 #Source0Download: https://github.com/awslabs/aws-crt-cpp/releases
-Source0:	https://github.com/awslabs/aws-crt-cpp/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	199908c51a79e9840b4cd829e6d80bf1
+Source0:	https://github.com/awslabs/aws-crt-cpp/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	fad43eded7e68c6619ee8f9e492bab20
 URL:		https://github.com/awslabs/aws-crt-cpp
-BuildRequires:	aws-c-auth-devel
-BuildRequires:	aws-c-cal-devel
-BuildRequires:	aws-c-common-devel
-BuildRequires:	aws-c-event-stream-devel
-BuildRequires:	aws-c-http-devel
-BuildRequires:	aws-c-io-devel
-BuildRequires:	aws-c-mqtt-devel
-BuildRequires:	aws-c-s3-devel
-BuildRequires:	aws-checksums-devel
+BuildRequires:	aws-c-auth-devel >= %{aws_c_auth_ver}
+BuildRequires:	aws-c-cal-devel >= %{aws_c_cal_ver}
+BuildRequires:	aws-c-common-devel >= %{aws_c_common_ver}
+BuildRequires:	aws-c-event-stream-devel >= %{aws_c_event_stream_ver}
+BuildRequires:	aws-c-http-devel >= %{aws_c_http_ver}
+BuildRequires:	aws-c-io-devel >= %{aws_c_io_ver}
+BuildRequires:	aws-c-mqtt-devel >= %{aws_c_mqtt_ver}
+BuildRequires:	aws-c-s3-devel >= %{aws_c_s3_ver}
+BuildRequires:	aws-checksums-devel >= %{aws_checksums_ver}
 BuildRequires:	cmake >= 3.9
 %{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.605
+Requires:	aws-c-auth >= %{aws_c_auth_ver}
+Requires:	aws-c-cal >= %{aws_c_cal_ver}
+Requires:	aws-c-common >= %{aws_c_common_ver}
+Requires:	aws-c-event-stream >= %{aws_c_event_stream_ver}
+Requires:	aws-c-http >= %{aws_c_http_ver}
+Requires:	aws-c-io >= %{aws_c_io_ver}
+Requires:	aws-c-mqtt >= %{aws_c_mqtt_ver}
+Requires:	aws-c-s3 >= %{aws_c_s3_ver}
+Requires:	aws-checksums >= %{aws_checksums_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,12 +68,15 @@ Summary:	Header files for AWS Crt Cpp library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki AWS Crt Cpp
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	aws-c-auth-devel
-Requires:	aws-c-cal-devel
-Requires:	aws-c-event-stream-devel
-Requires:	aws-c-http-devel
-Requires:	aws-c-mqtt-devel
-Requires:	aws-c-s3-devel
+Requires:	aws-c-auth-devel >= %{aws_c_auth_ver}
+Requires:	aws-c-cal-devel >= %{aws_c_cal_ver}
+Requires:	aws-c-common-devel >= %{aws_c_common_ver}
+Requires:	aws-c-event-stream-devel >= %{aws_c_event_stream_ver}
+Requires:	aws-c-http-devel >= %{aws_c_http_ver}
+Requires:	aws-c-io-devel >= %{aws_c_io_ver}
+Requires:	aws-c-mqtt-devel >= %{aws_c_mqtt_ver}
+Requires:	aws-c-s3-devel >= %{aws_c_s3_ver}
+Requires:	aws-checksums-devel >= %{aws_checksums_ver}
 Requires:	libstdc++-devel >= 6:4.7
 
 %description devel
